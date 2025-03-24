@@ -462,8 +462,8 @@ h6 {
 --------------------------------------------------------------*/
 .footer {
   color: var(--default-color);
-  background-color: var(--background-color);
-  background: url("../img/footer-bg.jpg") top center no-repeat;
+  background-color: color-mix(in srgb, var(--background-color), transparent 10%);
+  background: url("../img/logo.jpg") top center no-repeat;
   background-size: cover;
   font-size: 14px;
   position: relative;
@@ -576,20 +576,7 @@ h6 {
   margin-bottom: 5px;
 }
 
-.footer .copyright {
-  padding-top: 25px;
-  padding-bottom: 25px;
-  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-}
 
-.footer .copyright p {
-  margin-bottom: 0;
-}
-
-.footer .credits {
-  margin-top: 8px;
-  font-size: 13px;
-}
 
 /*--------------------------------------------------------------
 # Preloader
