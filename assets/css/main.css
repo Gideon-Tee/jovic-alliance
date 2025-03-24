@@ -64,6 +64,15 @@ body {
   color: var(--default-color);
   background-color: var(--background-color);
   font-family: var(--default-font);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -458,10 +467,13 @@ h6 {
   background-size: cover;
   font-size: 14px;
   position: relative;
+  margin-top: auto;
+  height: var(--footer-height);
 }
 
 .footer .container {
   position: relative;
+  margin-top: auto;
 }
 
 .footer:before {
