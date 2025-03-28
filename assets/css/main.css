@@ -98,14 +98,21 @@ h6 {
 
 /* PHP Email Form Messages
 ------------------------------*/
+
 .php-email-form .error-message {
   display: none;
-  background: #df1529;
+  background: #960530;
   color: #ffffff;
   text-align: left;
   padding: 15px;
   margin-bottom: 24px;
   font-weight: 600;
+}
+
+
+/* Optional fade effect when hiding */
+.sent-message.hide {
+  opacity: 0;
 }
 
 .php-email-form .sent-message {
@@ -136,7 +143,7 @@ h6 {
   border: 3px solid var(--accent-color);
   border-top-color: var(--surface-color);
   animation: php-email-form-loading 1s linear infinite;
-}
+} 
 
 @keyframes php-email-form-loading {
   0% {

@@ -400,6 +400,41 @@
               </div><!-- End Info Item -->
     
             </div>
+
+            <div class="row gy-4 mt-5">
+              <div class="col-lg-8 mx-auto">
+                <form action="https://formspree.io/f/xvgkboya" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
+                  <h6 class="text-muted fw-light mb-2 text-center">Have an enquiry or a message?</h6>
+                  <div class="row gy-4">
+    
+                    <div class="col-md-6">
+                      <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                    </div>
+    
+                    <div class="col-md-6 ">
+                      <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                    </div>
+    
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                    </div>
+    
+                    <div class="col-md-12">
+                      <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                    </div>
+    
+                    <div class="col-md-12 text-center">
+                      <div class="loading"></div>
+                      <div class="error-message rounded-xl"></div>
+                      <div class="sent-message rounded-xl">Your message has been sent. Thank you!</div>
+    
+                      <button type="submit">Send Message</button>
+                    </div>
+    
+                  </div>
+                </form>
+              </div><!-- End Contact Form -->
+            </div>
     
             
     
@@ -466,7 +501,6 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
@@ -477,6 +511,64 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <script>
+    document.querySelector('.php-email-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const form = e.target;
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const loading = form.querySelector('.loading');
+  const errorMsg = form.querySelector('.error-message');
+  const successMsg = form.querySelector('.sent-message');
+  
+  // Reset UI states
+  submitBtn.disabled = true;
+  loading.style.display = 'block';
+  errorMsg.style.display = 'none';
+  successMsg.style.display = 'none';
+
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 
+        'Accept': 'application/json'
+      }
+    });
+
+    const result = await response.json();
+    
+    if (result.ok) {
+      successMsg.style.display = 'block';
+      form.reset();
+      
+      // Hide after 3 seconds
+      setTimeout(() => {
+        successMsg.style.display = 'none';
+        loading.style.display = 'none';
+      }, 3000);
+      
+      
+    } else {
+      errorMsg.style.display = 'block';
+      errorMsg.textContent = "Couldn't send your message, please try again.";
+      setTimeout(() => {
+        errorMsg.style.display = 'none';
+        loading.style.display = 'none';
+      }, 5000);
+    }
+  } catch (error) {    
+    errorMsg.style.display = 'block';
+    errorMsg.textContent = 'An error occured (Ensure you have internet connection and try again)';
+
+  } finally {
+    loading.style.display = 'none';
+    submitBtn.disabled = false;
+  }
+});
+  </script>
+
+  
 </body>
 
 </html>
